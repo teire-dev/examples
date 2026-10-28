@@ -13,7 +13,7 @@
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- Core utilities -->
-    <guava.version>19.0</guava.version>
+    <guava.version>33.7.2-jre</guava.version>
     <junit.version>5.11.4</junit.version>
   </properties>
 
