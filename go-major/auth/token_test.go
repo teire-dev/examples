@@ -17,7 +17,8 @@ func TestIssueAndVerify(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if claims.UserID != "u-42" || claims.Role != "agent" || claims.Subject != "u-42" {
+	subj, _ := claims.GetSubject()
+	if claims.UserID != "u-42" || claims.Role != "agent" || subj != "u-42" {
 		t.Fatalf("unexpected claims %+v", claims)
 	}
 }

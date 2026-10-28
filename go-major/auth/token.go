@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/golang-jwt/jwt/v4"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 // Issuer names this service in every token it signs.
@@ -19,19 +19,49 @@ var ErrExpired = errors.New("token expired")
 type Claims struct {
 	UserID string `json:"uid"`
 	Role   string `json:"role"`
-	jwt.StandardClaims
+	jwt.RegisteredClaims
+}
+
+// GetExpirationTime implements the jwt.Claims interface.
+func (c *Claims) GetExpirationTime() (*jwt.NumericDate, error) {
+	return c.RegisteredClaims.GetExpirationTime()
+}
+
+// GetIssuedAt implements the jwt.Claims interface.
+func (c *Claims) GetIssuedAt() (*jwt.NumericDate, error) {
+	return c.RegisteredClaims.GetIssuedAt()
+}
+
+// GetNotBefore implements the jwt.Claims interface.
+func (c *Claims) GetNotBefore() (*jwt.NumericDate, error) {
+	return c.RegisteredClaims.GetNotBefore()
+}
+
+// GetIssuer implements the jwt.Claims interface.
+func (c *Claims) GetIssuer() (string, error) {
+	return c.RegisteredClaims.GetIssuer()
+}
+
+// GetSubject implements the jwt.Claims interface.
+func (c *Claims) GetSubject() (string, error) {
+	return c.RegisteredClaims.GetSubject()
+}
+
+// GetAudience implements the jwt.Claims interface.
+func (c *Claims) GetAudience() (jwt.ClaimStrings, error) {
+	return c.RegisteredClaims.GetAudience()
 }
 
 // Issue signs a session token for userID that is valid from now for ttl.
 func Issue(secret []byte, userID, role string, now time.Time, ttl time.Duration) (string, error) {
-	claims := Claims{
+	claims := &Claims{
 		UserID: userID,
 		Role:   role,
-		StandardClaims: jwt.StandardClaims{
-			Issuer:    Issuer,
-			Subject:   userID,
-			IssuedAt:  now.Unix(),
-			ExpiresAt: now.Add(ttl).Unix(),
+		RegisteredClaims: jwt.RegisteredClaims{
+			Issuer:      Issuer,
+			Subject:     userID,
+			IssuedAt:    jwt.NewNumericDate(now),
+			ExpiresAt:   jwt.NewNumericDate(now.Add(ttl)),
 		},
 	}
 	return jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString(secret)
@@ -46,14 +76,17 @@ func Verify(secret []byte, token string) (*Claims, error) {
 		return secret, nil
 	})
 	if err != nil {
-		var ve *jwt.ValidationError
-		if errors.As(err, &ve) && ve.Errors&jwt.ValidationErrorExpired != 0 {
+		if errors.Is(err, jwt.ErrTokenExpired) {
 			return nil, ErrExpired
 		}
 		return nil, err
 	}
 	claims, ok := parsed.Claims.(*Claims)
-	if !ok || claims.Issuer != Issuer {
+	if !ok {
+		return nil, errors.New("invalid token claims")
+	}
+	issuer, err := claims.GetIssuer()
+	if err != nil || issuer != Issuer {
 		return nil, errors.New("token not issued by " + Issuer)
 	}
 	return claims, nil
