@@ -12,7 +12,7 @@ export const Ticket = z
     email: z.string().email(),
     channel: z.nativeEnum(Channel),
     subject: z.string().min(1),
-    labels: z.record(z.string()).default({}),
+    labels: z.record(z.string(), z.unknown()).default({}),
   })
   .strict();
 
