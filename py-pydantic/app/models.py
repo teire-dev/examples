@@ -1,14 +1,26 @@
 """Ticket models and service settings on pydantic."""
 
-from pydantic import BaseModel, BaseSettings, validator
+import os
+from pydantic import BaseModel, field_validator, model_validator
 
 
-class Settings(BaseSettings):
+class Settings(BaseModel):
     api_url: str = "http://localhost:8000"
     timeout: float = 5.0
 
-    class Config:
-        env_prefix = "DESK_"
+    @model_validator(mode="before")
+    @classmethod
+    def read_env(cls, data: dict) -> dict:
+        data = dict(data)
+        if "timeout" not in data:
+            env_timeout = os.environ.get("DESK_TIMEOUT")
+            if env_timeout is not None:
+                data["timeout"] = float(env_timeout)
+        if "api_url" not in data:
+            env_api_url = os.environ.get("DESK_API_URL")
+            if env_api_url is not None:
+                data["api_url"] = env_api_url
+        return data
 
 
 class Ticket(BaseModel):
@@ -17,14 +29,16 @@ class Ticket(BaseModel):
     tags: list[str] = []
     priority: int = 3
 
-    @validator("subject")
+    @field_validator("subject")
+    @classmethod
     def strip_subject(cls, value: str) -> str:
         value = value.strip()
         if not value:
             raise ValueError("subject must not be empty")
         return value
 
-    @validator("priority")
+    @field_validator("priority")
+    @classmethod
     def priority_range(cls, value: int) -> int:
         if not 1 <= value <= 5:
             raise ValueError("priority must be between 1 and 5")
