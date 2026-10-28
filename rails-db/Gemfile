@@ -8,7 +8,7 @@ gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 
 # HTTP client for the vendor status pages we mirror.
-gem "faraday", "~> 1.10"
+gem "faraday", "~> 2.15"
 # Faraday 1.x requires base64, a bundled gem since Ruby 3.4.
 gem "base64", "~> 0.3"
 
