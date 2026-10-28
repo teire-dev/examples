@@ -10,7 +10,7 @@ import (
 )
 
 // Model is the chat model the summaries use.
-const Model = "gpt-4.1-nano"
+const Model = "gpt-5.6-luna"
 
 // Summarizer calls OpenAI's Chat Completions API.
 type Summarizer struct {
