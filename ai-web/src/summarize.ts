@@ -10,7 +10,7 @@ export interface Ticket {
 /** A one-line summary an agent reads before opening the ticket. */
 export async function summarizeTicket(openai: OpenAIProvider, ticket: Ticket): Promise<string> {
   const { text } = await generateText({
-    model: openai.chat("gpt-4.1-nano"),
+    model: openai.chat("gpt-5.6-luna"),
     system: "Summarise the support ticket in one short sentence for the support agent. No greeting.",
     prompt: `Subject: ${ticket.subject}\n\n${ticket.body}`,
     maxOutputTokens: 80,

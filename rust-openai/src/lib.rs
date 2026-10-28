@@ -11,7 +11,7 @@ use async_openai::{
 };
 
 /// The chat model the summaries use.
-pub const MODEL: &str = "gpt-4.1-nano";
+pub const MODEL: &str = "gpt-5.6-luna";
 
 pub struct Summarizer {
     client: Client<OpenAIConfig>,

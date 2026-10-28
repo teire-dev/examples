@@ -4,7 +4,7 @@ require "openai"
 
 # Drafts a one-line summary of a support ticket with OpenAI's Chat Completions API.
 class TicketSummary
-  MODEL = "gpt-4.1-nano"
+  MODEL = "gpt-5.6-luna"
 
   def initialize(api_key:, base_url: nil)
     options = { api_key: api_key, max_retries: 0 }

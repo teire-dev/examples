@@ -8,7 +8,7 @@ import com.openai.models.chat.completions.ChatCompletionCreateParams;
 /** Drafts a one-line summary of a support ticket with OpenAI's Chat Completions API. */
 public final class TicketSummary {
   /** The chat model the summaries use. */
-  public static final String MODEL = "gpt-4.1-nano";
+  public static final String MODEL = "gpt-5.6-luna";
 
   private final OpenAIClient client;
 
