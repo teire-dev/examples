@@ -5,7 +5,7 @@ import os
 from openai import OpenAI
 
 TOKEN_FACTORY_URL = "https://api.tokenfactory.nebius.com/v1/"
-MODEL = "nvidia/Llama-3_1-Nemotron-Ultra-253B-v1"
+MODEL = "nvidia/nemotron-3-super-120b-a12b"
 CATEGORIES = ("billing", "bug", "account", "other")
 
 
@@ -21,7 +21,7 @@ def classify(client: OpenAI, ticket: str) -> str:
             {"role": "system", "content": f"Answer with one word from: {', '.join(CATEGORIES)}."},
             {"role": "user", "content": ticket},
         ],
-        max_tokens=8,
+        max_tokens=64,
         temperature=0,
     )
     answer = response.choices[0].message.content.strip().lower()
