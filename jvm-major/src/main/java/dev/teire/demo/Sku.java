@@ -1,5 +1,6 @@
 package dev.teire.demo;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 /** A stock-keeping unit with its on-hand quantity. */
@@ -34,6 +35,6 @@ public final class Sku {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).add("code", code).add("onHand", onHand).toString();
+    return MoreObjects.toStringHelper(this).add("code", code).add("onHand", onHand).toString();
   }
 }
