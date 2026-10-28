@@ -1,0 +1,29 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    connection_pool (3.0.2)
+    logger (1.7.0)
+    minitest (5.27.0)
+    openai (0.114.0)
+      connection_pool (>= 2.2.3)
+      logger
+    rake (13.4.2)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  minitest (~> 5.25)
+  openai (~> 0.114)
+  rake (~> 13.2)
+
+CHECKSUMS
+  connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
+  logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
+  minitest (5.27.0) sha256=2d3b17f8a36fe7801c1adcffdbc38233b938eb0b4966e97a6739055a45fa77d5
+  openai (0.114.0) sha256=ffa38493d3db4cd95ce75a9ab0d28e6404b8ae572f10b5e35589e33e7e783c7c
+  rake (13.4.2) sha256=cb825b2bd5f1f8e91ca37bddb4b9aaf345551b4731da62949be002fa89283701
+
+BUNDLED WITH
+  4.0.20

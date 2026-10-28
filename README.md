@@ -12,6 +12,10 @@ Small, real projects, each built to reproduce one breakage Teire exists to fix: 
 | [`npm-zod`](npm-zod) | npm | zod 4 removed `ZodError.errors` and changed `z.record` | Fix the sites, upgrade, verify |
 | [`clean`](clean) | npm | `openai` 4 → 7, but nothing this code calls changed | "Not affected" with coverage; a plain verified upgrade |
 | [`ai-web`](ai-web) | npm | OpenAI shut down `gpt-4.1-nano` on 2026-10-23 (replacement `gpt-5.6-luna`) | Swap the model ID, verify, open a PR |
+| [`go-openai`](go-openai) | Go | OpenAI shut down `gpt-4.1-nano` on 2026-10-23; called through `openai-go/v3` | Swap the model ID, verify, open a PR |
+| [`java-openai`](java-openai) | Maven | The same retirement, through `com.openai:openai-java` | Swap the model ID, verify, open a PR |
+| [`ruby-openai`](ruby-openai) | RubyGems | The same retirement, through the `openai` gem | Swap the model ID, verify, open a PR |
+| [`rust-openai`](rust-openai) | Cargo | The same retirement, through `async-openai` | Swap the model ID, verify, open a PR |
 | [`wrapped-models`](wrapped-models) | npm | Groq shut down two Llama models on 2026-08-16; the IDs live in a tier registry, not in the call | Trace the registry to the call with Nemotron, swap both, verify |
 | [`py-major`](py-major) | PyPI (uv) | Anthropic SDK 0.125 → 1.x removed `HUMAN_PROMPT`/`AI_PROMPT` and `temperature` on that call | Fix the three sites, upgrade, verify |
 | [`py-openai`](py-openai) | PyPI (uv) | OpenAI SDK 0.28 → 1.x removed module-level `ChatCompletion` | Migrate to the client, upgrade, verify |

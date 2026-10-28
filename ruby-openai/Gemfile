@@ -1,0 +1,9 @@
+source "https://rubygems.org"
+
+# OpenAI's official Ruby SDK.
+gem "openai", "~> 0.114"
+
+group :test do
+  gem "minitest", "~> 5.25"
+  gem "rake", "~> 13.2"
+end
