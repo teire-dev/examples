@@ -3,7 +3,7 @@ name = "reply-drafter"
 version = "1.0.0"
 description = "Draft replies for support tickets on the OpenAI Python SDK 0.28. Teire demo repository."
 requires-python = ">=3.12"
-dependencies = ["openai==0.28.1"]
+dependencies = ["openai==3.35.1"]
 
 [dependency-groups]
 dev = ["pytest==9.1.1"]
