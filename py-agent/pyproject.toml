@@ -1,0 +1,12 @@
+[project]
+name = "ticket-triage-agent"
+version = "1.0.0"
+description = "A ticket-triage agent on Nebius Token Factory through the OpenAI Python SDK. Teire demo repository."
+requires-python = ">=3.12"
+dependencies = ["openai==3.35.1"]
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

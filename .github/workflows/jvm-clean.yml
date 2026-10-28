@@ -1,0 +1,19 @@
+name: jvm-clean
+on:
+  push:
+    paths: ["jvm-clean/**", ".github/workflows/jvm-clean.yml"]
+  pull_request:
+    paths: ["jvm-clean/**", ".github/workflows/jvm-clean.yml"]
+defaults:
+  run:
+    working-directory: jvm-clean
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: mvn -B verify

@@ -1,0 +1,12 @@
+[project]
+name = "support-desk"
+version = "1.0.0"
+description = "Support-ticket tools on the Anthropic Python SDK 0.x. Teire demo repository."
+requires-python = ">=3.12"
+dependencies = ["anthropic==0.125.0"]
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,11 @@
+source "https://rubygems.org"
+
+# HTTP client for the status page API.
+gem "faraday", "~> 1.10"
+# Faraday 1.x requires base64, a bundled gem since Ruby 3.4.
+gem "base64", "~> 0.3"
+
+group :test do
+  gem "minitest", "~> 5.25"
+  gem "rake", "~> 13.2"
+end

@@ -1,0 +1,19 @@
+name: ruby-major
+on:
+  push:
+    paths: ["ruby-major/**", ".github/workflows/ruby-major.yml"]
+  pull_request:
+    paths: ["ruby-major/**", ".github/workflows/ruby-major.yml"]
+defaults:
+  run:
+    working-directory: ruby-major
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: ruby-major
+      - run: bundle exec rake test

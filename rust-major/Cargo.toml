@@ -1,0 +1,11 @@
+[package]
+name = "desk-random"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Ticket IDs, agent assignment and queue order for a support desk. Teire demo repository."
+license = "MIT"
+publish = false
+
+[dependencies]
+rand = { version = "0.8", features = ["small_rng"] }

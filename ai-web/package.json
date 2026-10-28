@@ -1,0 +1,23 @@
+{
+  "name": "demo-ai-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A support inbox web service that drafts ticket summaries with the Vercel AI SDK and OpenAI. Teire demo repository.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node --experimental-strip-types src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "4.0.91",
+    "ai": "7.0.137"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "5.9.3",
+    "vitest": "5.0.4"
+  }
+}

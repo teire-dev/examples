@@ -1,0 +1,30 @@
+name: rails-db
+on:
+  push:
+    paths: ["rails-db/**", ".github/workflows/rails-db.yml"]
+  pull_request:
+    paths: ["rails-db/**", ".github/workflows/rails-db.yml"]
+defaults:
+  run:
+    working-directory: rails-db
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+        ports: ["5432:5432"]
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://rails:password@localhost:5432/demo_rails_db_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: rails-db
+      - run: bin/rails db:prepare
+      - run: bin/rails test

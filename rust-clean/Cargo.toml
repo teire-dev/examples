@@ -1,0 +1,10 @@
+[package]
+name = "desk-qty"
+version = "0.1.0"
+edition = "2021"
+description = "Quantity parsing for stock counts. Teire demo repository."
+license = "MIT"
+publish = false
+
+[dependencies]
+thiserror = "1.0"

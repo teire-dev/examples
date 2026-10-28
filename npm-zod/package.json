@@ -1,0 +1,21 @@
+{
+  "name": "demo-npm-zod",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ticket intake validation on zod 3. Teire demo repository.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "5.9.3",
+    "vitest": "5.0.4"
+  }
+}

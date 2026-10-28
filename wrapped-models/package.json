@@ -1,0 +1,21 @@
+{
+  "name": "demo-wrapped-models",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A support desk on Groq that picks a model per job from its own tier registry. Teire demo repository.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "groq-sdk": "1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "5.9.3",
+    "vitest": "5.0.4"
+  }
+}
