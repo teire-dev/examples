@@ -12,7 +12,7 @@ def make_client(api_key: str, base_url: str | None = None) -> Anthropic:
 def tag_ticket(client: Anthropic, ticket: str) -> str:
     """One-word category for a ticket, using the text-completions API."""
     result = client.completions.create(
-        model="claude-2.1",
+        model="claude-opus-4-8",
         max_tokens_to_sample=5,
         prompt=f"{HUMAN_PROMPT} Tag: {ticket}{AI_PROMPT}",
     )
