@@ -6,6 +6,8 @@ import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -25,7 +27,7 @@ class WebhookClientTest {
                     .protocol(Protocol.HTTP_1_1)
                     .code(code)
                     .message("canned")
-                    .body(ResponseBody.create(MediaType.parse("text/plain"), ""))
+                    .body("".toResponseBody("text/plain".toMediaTypeOrNull()!!))
                     .build()
             }
             .build()
@@ -34,9 +36,9 @@ class WebhookClientTest {
     fun deliversJsonToTheResolvedPath() {
         val status = WebhookClient(answering(202), "https://hooks.example.com/v1/").deliver("events", """{"id":1}""")
         assertEquals(202, status)
-        assertEquals("https://hooks.example.com/v1/events", seen.single().url().toString())
-        assertEquals("POST", seen.single().method())
-        assertEquals("application/json; charset=utf-8", seen.single().body()!!.contentType().toString())
+        assertEquals("https://hooks.example.com/v1/events", seen.single().url.toString())
+        assertEquals("POST", seen.single().method)
+        assertEquals("application/json; charset=utf-8", seen.single().body!!.contentType().toString())
     }
 
     @Test
