@@ -3,7 +3,7 @@ name = "ticket-models"
 version = "1.0.0"
 description = "Ticket models and settings on pydantic 1.10. Teire demo repository."
 requires-python = ">=3.12"
-dependencies = ["pydantic==1.10.18"]
+dependencies = ["pydantic==2.14.1"]
 
 [dependency-groups]
 dev = ["pytest==9.1.1"]
