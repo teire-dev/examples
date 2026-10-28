@@ -6,6 +6,6 @@ gem "faraday", "~> 1.10"
 gem "base64", "~> 0.3"
 
 group :test do
-  gem "minitest", "~> 5.25"
+  gem "minitest", "~> 6.0"
   gem "rake", "~> 13.2"
 end
