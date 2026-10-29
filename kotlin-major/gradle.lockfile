@@ -2,8 +2,10 @@
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
 # To regenerate this file, run: ./gradlew :dependencies --write-locks
-com.squareup.okhttp3:okhttp:3.14.9=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.squareup.okio:okio:1.17.2=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.squareup.okhttp3:okhttp-jvm:5.5.1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.squareup.okhttp3:okhttp:5.5.1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.squareup.okio:okio-jvm:3.18.1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.squareup.okio:okio:3.18.1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.apiguardian:apiguardian-api:1.1.2=testCompileClasspath
 org.jetbrains.kotlin:kotlin-build-tools-api:2.4.0=kotlinAbiValidationCompatClasspath
 org.jetbrains.kotlin:kotlin-build-tools-api:2.4.21=kotlinBuildToolsApiClasspath,kotlinCompilerClasspath,kotlinKlibCommonizerClasspath
