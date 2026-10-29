@@ -8,4 +8,4 @@ license = "MIT"
 publish = false
 
 [dependencies]
-rand = { version = "0.8", features = ["small_rng"] }
+rand = { version = "0.10", features = [] }
