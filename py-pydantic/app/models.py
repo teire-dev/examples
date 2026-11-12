@@ -1,6 +1,7 @@
 """Ticket models and service settings on pydantic."""
 
-from pydantic import BaseModel, BaseSettings, validator
+from pydantic import BaseModel, field_validator
+from pydantic.v1 import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -17,14 +18,16 @@ class Ticket(BaseModel):
     tags: list[str] = []
     priority: int = 3
 
-    @validator("subject")
+    @field_validator("subject")
+    @classmethod
     def strip_subject(cls, value: str) -> str:
         value = value.strip()
         if not value:
             raise ValueError("subject must not be empty")
         return value
 
-    @validator("priority")
+    @field_validator("priority")
+    @classmethod
     def priority_range(cls, value: int) -> int:
         if not 1 <= value <= 5:
             raise ValueError("priority must be between 1 and 5")
@@ -32,11 +35,11 @@ class Ticket(BaseModel):
 
 
 def parse_ticket(data: dict) -> Ticket:
-    return Ticket.parse_obj(data)
+    return Ticket.model_validate(data)
 
 
 def to_payload(ticket: Ticket) -> dict:
-    return ticket.dict(exclude_defaults=True)
+    return ticket.model_dump(exclude_defaults=True)
 
 
 def load_settings() -> Settings:
